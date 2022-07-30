@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Session(){
+export default function Sits(){
     return (
         <Ssession>
             <Link to='/sucesso'>

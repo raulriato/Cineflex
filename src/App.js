@@ -2,9 +2,9 @@ import { GlobalStyle } from "./styles/global";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Top from "./Top";
-import Movie from "./Movie";
-import Session from "./Session";
 import Success from "./Success";
+import Dates from "./Dates";
+import Sits from "./Sits";
 
 export default function App(){
     return(
@@ -13,8 +13,8 @@ export default function App(){
             <Top />
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/filme/:movieId' element={<Movie />} />
-                <Route path='/filme/:movieId/sessao/:SessionId' element={<Session />} />
+                <Route path='/filme/:movieId' element={<Dates />} />
+                <Route path='/sessao/:SessionId' element={<Sits />} />
                 <Route path='/sucesso' element={<Success />} />
             </Routes>
         </BrowserRouter>
