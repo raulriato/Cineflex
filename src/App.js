@@ -4,7 +4,7 @@ import Home from "./Home";
 import Top from "./Top";
 import Success from "./Success";
 import Dates from "./Dates";
-import Sits from "./Sits";
+import Seats from "./Seats";
 
 export default function App(){
     return(
@@ -14,7 +14,7 @@ export default function App(){
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/filme/:movieId' element={<Dates />} />
-                <Route path='/sessao/:sessionId' element={<Sits />} />
+                <Route path='/sessao/:sessionId' element={<Seats />} />
                 <Route path='/sucesso' element={<Success />} />
             </Routes>
         </BrowserRouter>
