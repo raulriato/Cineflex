@@ -3,20 +3,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import TextWrapper from "./TextWrapper";
+import Footer from "./Footer";
 
 export default function Dates(){
 
     const { movieId } = useParams();
+    const [movie, setMovie] = useState({});
     const [days, setDays] = useState([]);
+
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`);
         promise.then(({ data }) => {
+            setMovie(data);
             setDays(data.days);
         })
     }, [movieId]);
 
     return (
-        <SMovie>
+        <Wrapper>
             <TextWrapper>
                 Selecione o Horário
             </TextWrapper>
@@ -32,13 +36,14 @@ export default function Dates(){
                     </div>
                 </Date>
             ))}
-        </SMovie>
+            <Footer image={movie.posterURL} name={movie.title} />
+        </Wrapper>
     )
 }
 
-const SMovie = styled.div`
+const Wrapper = styled.div`
     width: 100%;
-    margin-top: 67px;
+    margin: 67px 0 120px;
 `;
 
 const Date = styled.div`

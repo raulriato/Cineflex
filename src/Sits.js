@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export default function Sits(){
     return (
-        <Ssession>
+        <Session>
             <Link to='/sucesso'>
                 <h1>Escolheu a sessão, agora escolhe a cadeira e segue a vida</h1>
             </Link>
-        </Ssession>
+        </Session>
     )
 }
 
-const Ssession = styled.div`
+const Session = styled.div`
     margin-top: 67px;
 `;

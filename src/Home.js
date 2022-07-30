@@ -16,7 +16,7 @@ export default function Home() {
 
 
     return (
-        <SHome>
+        <Content>
             <TextWrapper>
                 Selecione um Filme
             </TextWrapper>
@@ -29,11 +29,11 @@ export default function Home() {
                     </Movie>
                 ))}
             </Movies>
-        </SHome>
+        </Content>
     )
 }
 
-const SHome = styled.div`
+const Content = styled.div`
     width: 100vw;
     margin-top: 67px;
     display: flex;
