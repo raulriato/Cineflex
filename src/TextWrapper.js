@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-export default function TextWrapper({ children }){
+export default function TextWrapper({ children, height }){
     return (
-        <Text>{children}</Text>
+        <Text height={height}>{children}</Text>
     )
 }
 
 const Text = styled.div`
     width: 100%;
-    height: 110px;
+    height: ${({ height }) => height ? height : '110px'};
     display: flex;
     justify-content: center;
     align-items: center;

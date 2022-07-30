@@ -9,13 +9,11 @@ export default function Dates(){
 
     const { movieId } = useParams();
     const [movie, setMovie] = useState({});
-    const [days, setDays] = useState([]);
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`);
         promise.then(({ data }) => {
             setMovie(data);
-            setDays(data.days);
         })
     }, [movieId]);
 
@@ -24,7 +22,7 @@ export default function Dates(){
             <TextWrapper>
                 Selecione o Horário
             </TextWrapper>
-            {days.map(day => (
+            {movie.days?.map(day => (
                 <Date key={day.id}>
                     <p>{`${day.weekday} - ${day.date}`}</p>
                     <div>
