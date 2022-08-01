@@ -57,7 +57,7 @@ export default function Form({ ids, movie, date, showTime, pickedSeats }) {
                     <span>CPF do comprador:</span>
                     <input type='text'
                         pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
-                        placeholder="Digite seu CPF..."
+                        placeholder="Digite seu CPF... [ex: 123.456.789-01]"
                         onChange={(e) => setCpf(e.target.value)}
                         value={cpf}
                         required
