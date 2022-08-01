@@ -14,6 +14,7 @@ export default function Seats() {
     const [session, setSession] = useState({});
     const [seats, setSeats] = useState([]);
     const [ids, setIds] = useState([]);
+    const [pickedSeats, setPickedSeats] = useState([]);
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessionId}/seats`);
@@ -29,16 +30,23 @@ export default function Seats() {
             <SeatsWrapper>
                 {seats.map(seat => (
                     <Seat key={seat.id}
-                    isAvailable={seat.isAvailable}
-                    seat={seat}
-                    ids={ids}
-                    setIds={setIds}
-                    id={seat.id}
-                    >{seat.name}</Seat>
+                        isAvailable={seat.isAvailable}
+                        seat={seat}
+                        ids={ids}
+                        setIds={setIds}
+                        id={seat.id}
+                        pickedSeats={pickedSeats}
+                        setPickedSeats={setPickedSeats}
+                    >{seat.name.length === 1 ? `0${seat.name}` : seat.name}</Seat>
                 ))}
             </SeatsWrapper>
             <SeatStates />
-            <Form ids={ids} setIds={setIds} />
+            <Form ids={ids}
+                movie={session.movie?.title}
+                date={session.day?.date}
+                showTime={session.name}
+                pickedSeats={pickedSeats}
+            />
             <Footer image={session.movie?.posterURL} name={session.movie?.title} session={`${session.day?.weekday} - ${session.name}`} />
         </Wrapper>
     )

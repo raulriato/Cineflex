@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function TextWrapper({ children, height }){
+export default function TextWrapper({ children, height, color }){
     return (
-        <Text height={height}>{children}</Text>
+        <Text height={height} color={color}>{children}</Text>
     )
 }
 
@@ -13,4 +13,6 @@ const Text = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 24px;
+    color: ${({ color }) => color ? color : 'inherit'};
+    font-weight: ${({ color }) => color ? '700' : 'inherit'};
 `;

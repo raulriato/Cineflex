@@ -2,23 +2,43 @@ import styled from "styled-components";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
-export default function Form({ ids, setIds }){
+export default function Form({ ids, movie, date, showTime, pickedSeats }) {
 
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
+
     const navigate = useNavigate();
-    function handleForm(e){
+
+    function handleForm(e) {
         e.preventDefault();
 
-        const reservation = {
-            ids,
-            name,
-            cpf
-        }
+        if (pickedSeats.length === 0) {
+            alert('Selecione um assento para reservar')
+        } else {
 
-        const promise = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', reservation);
-        promise.then(() => navigate('/sucesso'));
+            const reservation = {
+                ids,
+                name,
+                cpf
+            }
+
+            const tickets = {
+                ...reservation,
+                ids: pickedSeats,
+                movie,
+                date,
+                showTime,
+            }
+
+            const promise = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', reservation);
+            promise.then(() => navigate('/sucesso', {
+                state: {
+                    tickets
+                }
+            }));
+        }
     }
 
     return (
@@ -26,13 +46,24 @@ export default function Form({ ids, setIds }){
             <form onSubmit={handleForm}>
                 <div>
                     <span>Nome do comprador:</span>
-                    <input type='text' placeholder="Digite seu nome..." onChange={(e) => setName(e.target.value)} value={name} />
+                    <input type='text'
+                        placeholder="Digite seu nome..."
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        required
+                    />
                 </div>
                 <div>
                     <span>CPF do comprador:</span>
-                    <input type='number' placeholder="Digite seu CPF..." onChange={(e) => setCpf(e.target.value)} value={cpf} />
+                    <input type='text'
+                        pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
+                        placeholder="Digite seu CPF..."
+                        onChange={(e) => setCpf(e.target.value)}
+                        value={cpf}
+                        required
+                    />
                 </div>
-                <button>Reservar assento(s)</button>
+                <Button>Reservar assento(s)</Button>
             </form>
         </Wrapper>
     )
@@ -75,15 +106,5 @@ const Wrapper = styled.div`
 
     input:focus {
         outline: 0;
-    }
-
-    button {
-        width: 225px;
-        height: 42px;
-        border-radius: 3px;
-        margin-top: 57px;
-        color: rgba(255, 255, 255, 1);
-        background-color: rgba(232, 131, 58, 1);
-        border: none;
     }
 `;

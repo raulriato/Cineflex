@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Seat({ children, isAvailable, seat, ids, setIds, id }){
+export default function Seat({ children, isAvailable, seat, ids, setIds, id, pickedSeats, setPickedSeats }){
 
     const [picked, setPicked] = useState(false);
 
@@ -14,6 +14,7 @@ export default function Seat({ children, isAvailable, seat, ids, setIds, id }){
         <SeatNumber isAvailable={isAvailable} picked={picked} onClick={() => {
             setPicked(!picked);
             setIds([...ids, id]);
+            setPickedSeats([...pickedSeats, seat.name])
         }}>{children}</SeatNumber>
     )
 
