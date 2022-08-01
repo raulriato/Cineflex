@@ -12,7 +12,7 @@ export default function Seat({ children, isAvailable, seat, ids, setIds, id, pic
 
     function addPickedSeat() {
         if (!picked) {
-            if (!pickedSeats.includes(seat.name)) {
+            if (!pickedSeats.includes(seat.name) && seat.isAvailable) {
                 setPickedSeats([...pickedSeats, seat.name])
             } else {
                 setPickedSeats(pickedSeats.filter(number => number !== seat.name))
