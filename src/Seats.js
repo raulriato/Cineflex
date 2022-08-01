@@ -15,7 +15,6 @@ export default function Seats() {
     const [seats, setSeats] = useState([]);
     const [ids, setIds] = useState([]);
     const [pickedSeats, setPickedSeats] = useState([]);
-    console.log(pickedSeats);
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessionId}/seats`);
